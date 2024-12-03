@@ -12,16 +12,17 @@ beforeEach(()=>{
     next = null
 })
 describe('RestaurantController createRestaurant tesztek', ()=>{
+    beforeEach(()=>{
+        req.body = newRestaurant
+    })
     it('kellene lennie egy createRestaurant fgv-nek', ()=>{
         expect(typeof RestaurantController.createRestaurant).toBe('function')
     })
     it('megkellene hívni a Model create fgv-ét', ()=>{
-        req.body = newRestaurant
         RestaurantController.createRestaurant(req, res, next)
         expect(restaurantModel.create).toHaveBeenCalledWith(newRestaurant)
     })
     it('A createRestaurant fgv-nek vissza kellene térnie egy 201-es stástus kóddal, és a felvitt json adattal', ()=>{
-        req.body = newRestaurant
         restaurantModel.create.mockReturnValue(newRestaurant)
         RestaurantController.createRestaurant(req, res, next)
         expect(res.statusCode).toBe(201)
