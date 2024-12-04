@@ -1,12 +1,17 @@
-const express = require('express');
-const router = express.Router();
-const Model = require('../models/etteremModel')
-const restaurantCreate = require('../controllers/restaurant.controller')
+const express = require('express')
+const router = express.Router()
+const {
+    createRestaurant,
+    getAllrestaurant,
+    getRestaurantById,
+    updateRestaurant,
+    deleteRestaurant
+} = require('../controllers/restaurant.controller')
 
-router.post('/', restaurantCreate)
-router.get('/', getAllrestaurants)
-router.get('/:id', getrestaurant)
-router.put('/:id', modifyrestaurant)
-router.delete('/:id', deleterestaurant)
+router.post('/', createRestaurant)
+router.get('/', getAllrestaurant)
+router.get('/:id', getRestaurantById)
+router.put('/:id', updateRestaurant)
+router.delete('/:id', deleteRestaurant)
 
-module.exports = router;
+module.exports = router
